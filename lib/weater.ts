@@ -1,4 +1,4 @@
-const API_KEY = "a9a0721e87645249b24bae397983be31"; // Replace with your actual API key
+const API_KEY = process.env.NEXT_PUBLIC_WEATHER_API_KEY; // Replace with your actual API key
 
 export async function getWeatherByCoords(lat: number, lon: number) {
   const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`;
