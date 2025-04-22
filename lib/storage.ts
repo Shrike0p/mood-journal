@@ -1,4 +1,4 @@
-// Define the interfaces for our data types
+
 interface Weather {
   main: string;
   temp: number;

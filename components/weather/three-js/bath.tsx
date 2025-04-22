@@ -4,7 +4,6 @@ import React, { useCallback, useRef, useState } from 'react';
 import * as THREE from 'three';
 import type { JSX } from 'react';
 
-// Define proper types for the GLTF result
 type UniformValue = number | boolean | THREE.Vector3 | THREE.Texture | undefined | [number, number, number];
 
 type ShaderLike = {
@@ -29,7 +28,6 @@ interface BathGLTF {
     };
 }
 
-// Define shader uniform types
 interface CustomShaderUniforms {
     time: { value: number };
     mousePos: { value: [number, number, number] };
@@ -67,7 +65,6 @@ export function Bath(): JSX.Element {
       `
         );
 
-        // Replace the position calculation - start with scale 0, grow on hover
         shader.vertexShader = shader.vertexShader.replace(
             '#include <begin_vertex>',
             `
@@ -99,20 +96,17 @@ export function Bath(): JSX.Element {
         const intersects = raycaster.intersectObject(meshRef.current, true);
         const point = intersects[0]?.point || dummyVector;
 
-        // Update hover state and delay
         const intersections = intersects.length > 0;
         returnDelayRef.current = intersections
             ? returnDelayAmount
             : Math.max(0, returnDelayRef.current - 1);
 
-        // Update target position based on hover state and delay
         if (intersections) {
             targetMousePos.lerp(point, 0.2);
         } else if (returnDelayRef.current === 0) {
             targetMousePos.set(0, 0, 0);
         }
 
-        // Smooth movement with dynamic speed
         const speed = intersections ? easeSpeed : returnSpeed;
         currentMousePos.lerp(targetMousePos, speed);
 
@@ -213,5 +207,4 @@ export function Bath(): JSX.Element {
     );
 }
 
-// Add preload for the GLTF model
 useGLTF.preload('bath3.1.glb');

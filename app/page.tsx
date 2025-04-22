@@ -1,4 +1,3 @@
-// src/app/page.tsx
 "use client"
 import { useEffect, useState } from 'react';
 import { getWeatherByCoords } from '@/lib/weater';
@@ -71,10 +70,8 @@ export default function Home() {
 
     const formattedDate = `${selectedDate.getFullYear()}-${String(selectedDate.getMonth() + 1).padStart(2, '0')}-${String(selectedDate.getDate()).padStart(2, '0')}`;
 
-    // If selectedEntry is already set for this date, do nothing
     if (selectedEntry && selectedEntry.date === formattedDate) return;
 
-    // Otherwise update based on calendar selection
     const entry = entries.find(e => e.date === formattedDate);
     setSelectedEntry(entry || null);
   }, [selectedDate, entries, selectedEntry]);
@@ -83,7 +80,6 @@ export default function Home() {
 
   useEffect(() => {
     if (isManualSelect) {
-      // Reset after next render
       setTimeout(() => setIsManualSelect(false), 0);
     }
   }, [isManualSelect]);
@@ -107,7 +103,7 @@ export default function Home() {
   };
 
   const handleEntrySelect = (entry: Entry) => {
-    setIsManualSelect(true); // prevent auto-update from calendar effect
+    setIsManualSelect(true);
     setSelectedDate(new Date(entry.date));
     setSelectedEntry(entry);
   };
