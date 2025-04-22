@@ -77,7 +77,7 @@ export default function Home() {
     // Otherwise update based on calendar selection
     const entry = entries.find(e => e.date === formattedDate);
     setSelectedEntry(entry || null);
-  }, [selectedDate, entries]);
+  }, [selectedDate, entries, selectedEntry]);
 
 
 

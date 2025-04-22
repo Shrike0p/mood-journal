@@ -1,8 +1,9 @@
 import { CameraControls, PerspectiveCamera } from '@react-three/drei';
 import { useThree } from '@react-three/fiber';
 import { useEffect } from 'react';
+
 export const CameraStuff = () => {
-    const controls = useThree((state) => state.controls);
+    const controls = useThree((state) => state.controls) as CameraControls | null;
 
     useEffect(() => {
         if (controls) {

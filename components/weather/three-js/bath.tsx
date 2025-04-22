@@ -5,6 +5,14 @@ import * as THREE from 'three';
 import type { JSX } from 'react';
 
 // Define proper types for the GLTF result
+type UniformValue = number | boolean | THREE.Vector3 | THREE.Texture | undefined | [number, number, number];
+
+type ShaderLike = {
+    uniforms: { [uniform: string]: { value: UniformValue } };
+    vertexShader: string;
+    fragmentShader: string;
+};
+
 interface BathGLTF {
     nodes: {
         Retopo_Bathtub: THREE.Mesh;
@@ -45,7 +53,7 @@ export function Bath(): JSX.Element {
     const returnDelayRef = useRef<number>(0);
     const returnDelayAmount = 60;
 
-    const modifyShader = useCallback((shader: THREE.Shader) => {
+    const modifyShader = useCallback((shader: ShaderLike) => {
         shader.uniforms.time = uniformsRef.current.time;
         shader.uniforms.mousePos = uniformsRef.current.mousePos;
 

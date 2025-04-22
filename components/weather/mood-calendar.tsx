@@ -1,8 +1,7 @@
 import React from 'react';
 import { Calendar } from "@/components/ui/calendar";
 import { Entry } from '@/app/page';
-import { moodColors, moodEmojis } from '@/lib/constants';
-import type { DayContentProps } from "react-day-picker";
+import { moodColors } from '@/lib/constants';
 
 interface MoodCalendarProps {
   entries: Entry[];
@@ -10,7 +9,7 @@ interface MoodCalendarProps {
   onDateSelect: (date: Date | undefined) => void;
 }
 
-export function MoodCalendar({ entries, selectedDate, onDateSelect }: MoodCalendarProps) {
+export function MoodCalendar({ selectedDate, onDateSelect }: MoodCalendarProps) {
 
   return (
     <div className="bg-[#e2dbc9] dark:bg-gray-600/60 p-4 rounded-lg shadow-md">
